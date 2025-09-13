@@ -26,4 +26,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
-
+models:
+  lessons:                # This config applies to all models in your project
+    +materialized: table   # This sets the default materialization for models to "view"
