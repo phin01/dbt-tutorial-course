@@ -1,0 +1,21 @@
+Generate initial model
+    > dbt run-operation generate_base_model --args '{"source_name": "thelook_ecommerce", "table_name": "orders"}'
+It will output a SQL query, to be saved as a .sql file
+
+
+Run model
+    > dbt run -s stg_ecommerce__orders
+It will run the query against the database, generating a table or a view in the destination
+Optional arg: --full-refresh
+It will drop any existing tables/views with the same name in case they are found when running the comand
+
+
+Generate yml file for model
+    > dbt run-operation generate_model_yaml --args '{"model_names": ["stg_ecommerce__orders", "stg_ecommerce__users"]}'
+Outputs a yml config for each of the models provided as a list (can be a single one as well), based on the select statement. Can be saved as a .yml file
+
+
+Run tests
+After including tests in the model's yml file, run
+    > dbt test -s stg_ecommerce__orders
+It will evaluate all the listed tests for the model and generate a compiled sql query to evaluate any tests that failed    
