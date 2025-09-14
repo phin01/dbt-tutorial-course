@@ -1,0 +1,7 @@
+https://github.com/dbt-labs/dbt-utils
+dbt package with useful macros and generic tests
+
+
+https://github.com/calogica/dbt-expectations [DEPRECATED]
+https://github.com/metaplane/dbt-expectations
+dbt package with tests inspired by Python's Great Expectations package (https://greatexpectations.io/)
