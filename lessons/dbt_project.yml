@@ -29,3 +29,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   lessons:                # This config applies to all models in your project
     +materialized: table   # This sets the default materialization for models to "view"
+    +persist_docs:
+      relation: true
+      columns: true
+    +hours_to_expiration: 168  # 7 days
+
+tests:
+  lessons:                # This config applies to all tests in your project
+    +severity: warn       # This sets the default severity for tests to "warn"

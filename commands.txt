@@ -18,4 +18,17 @@ Outputs a yml config for each of the models provided as a list (can be a single 
 Run tests
 After including tests in the model's yml file, run
     > dbt test -s stg_ecommerce__orders
-It will evaluate all the listed tests for the model and generate a compiled sql query to evaluate any tests that failed    
+It will evaluate all the listed tests for the model and generate a compiled sql query to evaluate any tests that failed
+
+
+Run Unit Tests
+    > dbt test -s test_type:unit
+ When running tests, you can select either a mode, a specific test (by name), or tests by type
+
+
+Lineage order
+    > dbt build
+Runs commands in the given order:
+    - Run the unit tests on your model
+    - Materialize your model in the warehouse
+    - Run the data tests on your model
