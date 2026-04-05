@@ -1,0 +1,14 @@
+Generate SQL code for base models from the mentioned tables
+dbt run-operation generate_base_model --args '{"source_name": "thelook_ecommerce", "table_name": "orders"}'
+
+Generate YAML file for model
+dbt run-operation generate_model_yaml --args '{"model_names": ["stg_ecommerce__xxx", "stg_ecommerce__yyy"]}'
+
+Run model from SQL file in models folder
+Will generate a view/table at the configured database/warehouse
+dbt run -s [--select] stg_ecommerce__orders
+
+Run tests for a given model
+Tests are configured in the model's YAML file
+If tests fail, it'll generate a SQL query you can run on the source for more details
+dbt test -s [--select] stg_ecommerce__orders
