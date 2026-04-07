@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: int_ecommerce__order_items_products
+    description: "Order item data joined to product data"
+    columns:
+      - name: order_item_id
+        description: "Unique identifier for the order item"
+        tests:
+          - unique
+          - not_null
+
+      - name: order_id
+        description: "Unique identifier for the order"
+        tests:
+          - not_null
+
+      - name: user_id
+        description: "Unique identifier for the user"
+        tests:
+          - not_null
+
+      - name: product_id
+        description: "Unique identifier for the product"
+        tests:
+          - not_null
+
+      - name: item_sale_price
+        description: "Sale price of the order item"
+        tests:
+          - not_null
+
+      - name: product_department
+        description: "Department of the product"
+        tests:
+          - not_null
+
+      - name: product_cost
+        description: "Cost of the product"
+        tests:
+          - not_null
+
+      - name: product_retail_price
+        description: "Retail price of the product"
+        tests:
+          - not_null
+
+      - name: item_profit
+        description: "Profit for the order item: item_sale_price - product_cost"
+        tests:
+          - not_null
+
+      - name: item_discount
+        description: "Discount for the order item: product_retail_price - item_sale_price"
+        tests:
+          - not_null
