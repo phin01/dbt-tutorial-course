@@ -5,13 +5,17 @@ models:
       - name: product_id
         description: "Unique identifier for each product"
         tests:
-          - unique
-          - not_null
+          - unique:
+              severity: error
+          - not_null:
+              severity: error
 
       - name: cost
         description: "How much the product costs to produce or purchase"
         tests:
-          - not_null
+          - not_null:
+              warn_if: ">10"
+              error_if: ">100"
 
       - name: retail_price
         description: "The price at which the product is sold"
