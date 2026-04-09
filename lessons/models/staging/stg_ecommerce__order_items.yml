@@ -5,8 +5,7 @@ models:
       - name: order_item_id
         description: "Unique identifier for each order item"
         tests:
-          - unique
-          - not_null
+          - primary_key
 
       - name: order_id
         description: "Identifier for the order to which this item belongs"

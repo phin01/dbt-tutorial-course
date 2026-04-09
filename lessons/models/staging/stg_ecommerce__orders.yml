@@ -7,8 +7,7 @@ models:
     - name: order_id
       description: ""
       tests:
-        - unique
-        - not_null
+        - primary_key
 
     - name: user_id
       description: ""
