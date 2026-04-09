@@ -7,7 +7,8 @@ models:
     - name: order_id
       description: ""
       tests:
-        - primary_key
+        - primary_key:
+            severity: error
 
     - name: user_id
       description: ""
@@ -37,6 +38,9 @@ models:
       tests:
         - not_null:
             where: "status IN ('Returned')"
+        - dbt_utils.expression_is_true:
+            expression: ">= delivered_at"
+            where: "delivered_at IS NOT NULL AND returned_at IS NOT NULL"
 
 
     - name: shipped_at
@@ -50,8 +54,13 @@ models:
       tests:
         - not_null:
             where: "returned_at IS NOT NULL OR status IN ('Complete')"
+        - dbt_utils.expression_is_true:
+            expression: ">= shipped_at"
+            where: "shipped_at IS NOT NULL AND delivered_at IS NOT NULL"
 
     - name: num_items_ordered
       description: "Number of items in the order"
       tests:
         - not_null
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: 0
