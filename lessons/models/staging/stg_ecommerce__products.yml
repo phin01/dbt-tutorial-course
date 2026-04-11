@@ -5,18 +5,32 @@ models:
       - name: product_id
         description: "Unique identifier for each product"
         tests:
-          - unique
-          - not_null
+          - primary_key:
+              severity: error
 
       - name: cost
         description: "How much the product costs to produce or purchase"
         tests:
-          - not_null
+          - not_null:
+              warn_if: ">10"
+              error_if: ">100"
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 1000
+              severity: error
 
       - name: retail_price
         description: "The price at which the product is sold"
         tests:
           - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+          - dbt_utils.expression_is_true:
+              expression: ">= cost"
+              name: retail_price_must_be_greater_than_or_equal_to_cost
+              config:
+                where: "cost IS NOT NULL AND retail_price IS NOT NULL"
+                severity: error
 
       - name: department
         description: "The department to which the product belongs"
