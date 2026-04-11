@@ -13,6 +13,10 @@ Tests are configured in the model's YAML file
 If tests fail, it'll generate a SQL query you can run on the source for more details
 dbt test -s [--select] stg_ecommerce__orders
 
+Run tests of a given type
+ie, Run all unit tests
+dbt test -s "test_type:unit"
+
 Compile dbt model
 dbt Power User shortcut: Ctrl + '
 
