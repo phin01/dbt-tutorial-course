@@ -7,8 +7,8 @@ models:
       - name: order_item_id
         description: "Unique identifier for the order item"
         tests:
-          - unique
-          - not_null
+          - primary_key:
+              severity: error
 
       - name: order_id
         description: "Unique identifier for the order"
@@ -49,8 +49,12 @@ models:
         description: "Profit for the order item: item_sale_price - product_cost"
         tests:
           - not_null
+          - dbt_utils.expression_is_true:
+              expression: "= (item_sale_price - product_cost)"
 
       - name: item_discount
         description: "Discount for the order item: product_retail_price - item_sale_price"
         tests:
           - not_null
+          - dbt_utils.expression_is_true:
+              expression: "= (product_retail_price - item_sale_price)"

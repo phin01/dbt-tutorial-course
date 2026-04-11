@@ -1,0 +1,16 @@
+unit_tests:
+  - name: test_profit_and_discounts
+    description: "Test that profit and discounts are calculated correctly"
+    model: int_ecommerce__order_items_products
+    given:
+      - input: ref('stg_ecommerce__products')
+        rows:
+          - { product_id: 1, cost: 10.00, retail_price: 20.00 }
+      - input: ref('stg_ecommerce__order_items')
+        rows:
+          - { product_id: 1, item_sale_price: 18.00 }
+    expect:
+      rows:
+        - { item_profit: 8.00, item_discount: 2.00 }
+
+        
