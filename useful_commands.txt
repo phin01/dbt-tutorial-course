@@ -26,3 +26,7 @@ dbt Power User shortcut: Ctrl + Shift + '
 Load seed files to the source datawarehouse
 dbt seed
 dbt seed -s seed_name
+
+Run snapshot of a given model
+dbt snapshot
+dbt snapshot -s snapshot_name
