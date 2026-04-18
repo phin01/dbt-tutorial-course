@@ -28,8 +28,8 @@ SELECT
 	om.total_profit,
 	om.total_discount,
 
-	user_data.first_order_created_at as user_first_order
-	TIMESTAMPDIFF(DAY, user_data.first_order_created_at, od.created_at) AS days_since_first_order
+	user_data.first_order_created_at as user_first_order,
+	TIMESTAMP_DIFF(od.created_at, user_data.first_order_created_at, DAY) AS days_since_first_order
 
 FROM 
 	{{ ref('stg_ecommerce__orders') }} AS od
