@@ -24,7 +24,7 @@ models:
         description: "When the order was returned"
 
       - name: order_status
-        description: "The current status of the order"
+        description: "{{ doc('status') }}"
 
       - name: num_items_ordered
         description: "The total number of items in the order"

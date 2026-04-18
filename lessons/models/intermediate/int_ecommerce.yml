@@ -15,7 +15,10 @@ models:
         tests:
           - not_null
 
-      - name: user_id
+      # Using an anchor to avoid repeating the user_id column definition
+      # The '&' symbol creates an anchor named 'user_id' that can be referenced later with '*user_id' in the same file
+      - &user_id
+        name: user_id
         description: "Unique identifier for the user"
         tests:
           - not_null
@@ -58,3 +61,13 @@ models:
           - not_null
           - dbt_utils.expression_is_true:
               expression: "= (product_retail_price - item_sale_price)"
+
+  - name: int_ecommerce__first_order_created
+    description: "The date of the first order for each user"
+    columns:
+      - *user_id
+
+      - name: first_order_created_at
+        description: "The date of the first order for each user"
+        tests:
+          - not_null
