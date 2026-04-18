@@ -1,8 +1,13 @@
 {{ config(
         materialized='incremental',
         unique_key='event_id',
-        on_schema_change='fail'
-    ) 
+        on_schema_change='fail',
+        partition_by={
+            "field": "created_at",
+            "data_type": "timestamp",
+            "granularity": "month"
+        }
+    )
 }}
 
 WITH source AS (
